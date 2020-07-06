@@ -50,7 +50,7 @@ namespace COM3D2.Lilly.Patcher
                     //    assemblyDefinition, "COM3D2.Lilly.Managed.AudioSourceMgr.LoadPlay");
                     //PatcherHelper.SetHook(PatcherHelper.HookType.PostCall, assembly, "AudioSourceMgr", "LoadPlay", assemblyDefinition, "COM3D2.Lilly.Managed.AudioSourceMgr", "LoadPlay");
                     PatcherHelper.SetHook(
-                        PatcherHelper.HookType.PreCall,
+                        PatcherHelper.HookType.PostCall,
                         ta, "AudioSourceMgr.LoadPlay",
                         da, "COM3D2.Lilly.Managed.AudioSourceMgr.LoadPlay");
                 }
