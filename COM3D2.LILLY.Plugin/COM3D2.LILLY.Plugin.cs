@@ -220,26 +220,30 @@ namespace COM3D2.LILLY.Plugin
         // ボタンを登録 버튼 등록
         private void _registerGearButton()
         {
-            if (Buttons.Contains(ButtonName))
+            try
             {
-                Buttons.Remove(ButtonName);
-            }
-            GameObject btn = Buttons.Add(ButtonName, Label, IconPng, OnGearMenuClick);
 
-            if (m_isEnable)
+                if (Buttons.Contains(ButtonName))
+                {
+                    Buttons.Remove(ButtonName);
+                }
+                GameObject btn = Buttons.Add(ButtonName, Label, IconPng, OnGearMenuClick);
+
+                if (m_isEnable)
+                {
+                    Buttons.SetFrameColor(btn, Color.red);
+                }
+                else
+                {
+                    Buttons.SetFrameColor(btn, new Color(0.827f, 0.827f, 0.827f));
+                }
+            }
+            catch (Exception e)
             {
-                Buttons.SetFrameColor(btn, Color.red);
+                Log(e);
             }
-            else
-            {
-                Buttons.SetFrameColor(btn, new Color(0.827f, 0.827f, 0.827f));
 
 
-
-
-
-
-            }
         }
 
 
