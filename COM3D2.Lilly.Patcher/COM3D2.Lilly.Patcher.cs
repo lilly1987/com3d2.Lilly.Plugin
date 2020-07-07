@@ -11,7 +11,12 @@ namespace COM3D2.Lilly.Patcher
     {
         static String name = "Lilly.Patcher";
 
+        // 불러올 dll 목록. 시바리스용
         public static readonly string[] TargetAssemblyNames = { "Assembly-CSharp.dll", "UnityEngine.dll", "Assembly-CSharp-firstpass.dll" };
+
+        // 불러올 dll 목록. BepInEx용
+        // 플러그인 https://github.com/BepInEx/BepInEx
+        // 가이드 https://bepinex.github.io/bepinex_docs/master/articles/index.html
         public static IEnumerable<string> TargetDLLs { get; } = new[] { "Assembly-CSharp.dll", "UnityEngine.dll", "Assembly-CSharp-firstpass.dll" };
 
         // Patches the assemblies
@@ -24,12 +29,11 @@ namespace COM3D2.Lilly.Patcher
             TypeDefinition typedef = da.MainModule.GetType("COM3D2.Lilly.Managed,LillyManaged");
             try
             {
-
                 if (assembly.Name.Name == "Assembly-CSharp")
                 {
-
                     Log("Assembly-CSharp");
 
+                    // 사운드 파일명 출력용 후킹. 
                     PatcherHelper.SetHook(
                         PatcherHelper.HookType.PreCall,
                         ta, "AudioSourceMgr.LoadPlay",
@@ -49,7 +53,6 @@ namespace COM3D2.Lilly.Patcher
             catch (Exception e)
             {
                 Log(e);
-
             }
 
         }

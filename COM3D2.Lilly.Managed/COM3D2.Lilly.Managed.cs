@@ -6,6 +6,8 @@ using UnityEngine;
 
 namespace COM3D2.Lilly.Managed
 {
+
+    // 로그 툴력용. 사실 utill에 해당
     public static class Lilly
     {
         static String name = "Lilly.Managed";
@@ -45,26 +47,18 @@ namespace COM3D2.Lilly.Managed
             Console.ResetColor();
         }
     }
-    public static class AudioSourceMgrLilly
+
+    public static class AudioSourceMgrLilly // 클래스명은 편한대로. 단지 AudioSourceMgr로 똑같이 적어버리면 아래 메소드에서 처리하기가 좀 곤란
     {
         static String name = "AudioSourceMgr";
 
-        public static void LoadPlay(AudioSourceMgr that, string f_strFileName, float f_fFadeTime, bool f_bStreaming, bool f_bLoop = false)
+        // 사운드 파일명 출력용
+        public static void LoadPlay(AudioSourceMgr that, string f_strFileName, float f_fFadeTime, bool f_bStreaming, bool f_bLoop = false) // 후킹시 원본 클래스도 같이 받도록 돼있음
+        //     public void LoadPlay(                     string f_strFileName, float f_fFadeTime, bool f_bStreaming, bool f_bLoop = false) // 원본
         {
             Lilly.Log(name + ".LoadPlay:" + f_strFileName);
         }
 
-        //        InvalidProgramException: Invalid IL code in AudioSourceMgr:LoadPlay(string, single, bool, bool) : IL_0032: ret
-        //
-        //             at SoundMgr+AudioFadeBuffer.PlayEx(System.String f_strFileName, Single f_fTime, Boolean f_bStreaming, Boolean f_bLoop, UnityEngine.Transform f_trAttachParent, Boolean f_bDance)[0x00000] in <filename unknown>:0 
-        //  at SoundMgr+AudioFadeBuffer.Play(System.String f_strFileName, Single f_fTime, Boolean f_bStreaming, Boolean f_bLoop, UnityEngine.Transform f_trAttachParent)[0x00000] in <filename unknown>:0 
-        //  at SoundMgr.PlayBGM(System.String f_strFileName, Single f_fTime, Boolean f_fLoop) [0x00000] in <filename unknown>:0 
-        //  at TitleMgr.Init() [0x00000] in <filename unknown>:0 
-        //  at TitleMgr.OpenTitlePanel() [0x00000] in <filename unknown>:0 
-        //  at com.workman.cm3d2.scene.dailyEtc.SceneMgr.Start() [0x00000] in <filename unknown>:0 
-        //
-        //
-        //(Filename:  Line: -1)
 
     }
 
