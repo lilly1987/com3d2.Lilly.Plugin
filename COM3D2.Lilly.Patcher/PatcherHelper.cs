@@ -172,11 +172,11 @@ internal static class PatcherHelper
         AssemblyDefinition targetAssembly, string targetTypeName, string targetMethodName, string[] targetArgTypes,
         AssemblyDefinition calleeAssembly, string calleeTypeName, string calleeMethodName, string[] calleeArgTypes)
     {
-#if DEBUG
+//#if DEBUG
         Console.WriteLine("SetHook - {0}/{1}|{2}({3}) -> {4}/{5}|{6}({7})",
                           targetAssembly.Name.Name, targetTypeName, targetMethodName, string.Join(",", targetArgTypes),
                           calleeAssembly.Name.Name, calleeTypeName, calleeMethodName, string.Join(",", calleeArgTypes));
-#endif
+//#endif
         TypeDefinition calleeTypeDefinition = calleeAssembly.MainModule.GetType(calleeTypeName);
         if (calleeTypeDefinition == null)
         {

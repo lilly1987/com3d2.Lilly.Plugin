@@ -11,27 +11,13 @@ namespace COM3D2.Lilly.Patcher
     {
         static String name = "Lilly.Patcher";
 
-        // List of assemblies to patch
-        //public static readonly string[] TargetAssemblyNames = { "Assembly-CSharp.dll" };
-        public static readonly string[] TargetAssemblyNames = { "Assembly-CSharp.dll" ,"UnityEngine.dll","Assembly-CSharp-firstpass.dll"};
-        public static IEnumerable<string> TargetDLLs { get; } = new[] { "Assembly-CSharp.dll"  ,"UnityEngine.dll","Assembly-CSharp-firstpass.dll"};
-        //public static IEnumerable<string> TargetDLLs { get; } = new[] { "Assembly-CSharp.dll"  };
-
-
+        public static readonly string[] TargetAssemblyNames = { "Assembly-CSharp.dll", "UnityEngine.dll", "Assembly-CSharp-firstpass.dll" };
+        public static IEnumerable<string> TargetDLLs { get; } = new[] { "Assembly-CSharp.dll", "UnityEngine.dll", "Assembly-CSharp-firstpass.dll" };
 
         // Patches the assemblies
         public static void Patch(AssemblyDefinition assembly)
         {
-            LogError( assembly.Name.Name);
-            // Patcher code here
-
-            //AssemblyDefinition assemblyDefinition = PatcherHelper.GetAssemblyDefinition("COM3D2.QuickEditStart.Managed.dll");
-            //TypeDefinition type = assemblyDefinition.MainModule.GetType("COM3D2.QuickEditStart.Managed.QuickEditStartManaged");
-
-            //AssemblyDefinition assemblyDefinition = PatcherHelper.GetAssemblyDefinition("COM3D2.Lilly.Managed.dll");
-            //TypeDefinition type = assemblyDefinition.MainModule.GetType("COM3D2.Lilly.Managed.Lilly");
-
-            //Patcher.BeforeConstructer(assembly, type, "SceneEdit/ColorItemSet", "MenuItemSet");
+            LogError(assembly.Name.Name);
 
             AssemblyDefinition ta = assembly;
             AssemblyDefinition da = PatcherHelper.GetAssemblyDefinition("COM3D2.Lilly.Managed.dll");
@@ -41,73 +27,32 @@ namespace COM3D2.Lilly.Patcher
 
                 if (assembly.Name.Name == "Assembly-CSharp")
                 {
-                    // The assembly is Assembly-CSharp.dll
+
                     Log("Assembly-CSharp");
 
-                    //PatcherHelper.SetHook(
-                    //    PatcherHelper.HookType.PreCall, 
-                    //    assembly, "AudioSourceMgr.LoadPlay", 
-                    //    assemblyDefinition, "COM3D2.Lilly.Managed.AudioSourceMgr.LoadPlay");
-                    //PatcherHelper.SetHook(PatcherHelper.HookType.PostCall, assembly, "AudioSourceMgr", "LoadPlay", assemblyDefinition, "COM3D2.Lilly.Managed.AudioSourceMgr", "LoadPlay");
                     PatcherHelper.SetHook(
-                        PatcherHelper.HookType.PostCall,
+                        PatcherHelper.HookType.PreCall,
                         ta, "AudioSourceMgr.LoadPlay",
-                        da, "COM3D2.Lilly.Managed.AudioSourceMgr.LoadPlay");
+                        da, "COM3D2.Lilly.Managed.AudioSourceMgrLilly.LoadPlay");
                 }
                 else if (assembly.Name.Name == "UnityEngine")
                 {
-                    // The assembly is UnityEngine.dll
                     Log(" UnityEngine");
-                    //PatcherHelper.SetHook(PatcherHelper.HookType.PreJump, assembly, "Input", "GetKeyDown", assemblyDefinition, "COM3D2.Lilly.Managed.Input", "GetKeyDown");
-                    //PatcherHelper.SetHook(
-                    //    PatcherHelper.HookType.PreCall,
-                    //    ta, "Input.GetKeyDown",
-                    //    da, "COM3D2.Lilly.Managed.Input.GetKeyDown");
+
                 }
                 else if (assembly.Name.Name == "Assembly-CSharp-firstpass")
                 {
                     Log(" Assembly-CSharp-firstpass");
 
-                    PatcherHelper.SetHook(
-                       PatcherHelper.HookType.PreJump,
-                       ta, "NDebug.MessageBox",
-                       da, "COM3D2.Lilly.Managed.NDebug.MessageBox");
                 }
             }
             catch (Exception e)
             {
                 Log(e);
-                //throw;
+
             }
-                //LogError("Patch2 : " + assembly.Name.Name);
-                //string text = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "COM3D2.Lilly.Managed.dll");
-                //if (!File.Exists(text))
-                //{
-                //    LogError(" File.Exists(text)");
-                //    return;
-                //}
-                ////TypeDefinition type = AssemblyDefinition.ReadAssembly(text).MainModule.GetType("CM3D2.ExternalPreset.Managed.ExPreset");
-                //type = AssemblyDefinition.ReadAssembly(text).MainModule.GetType("COM3D2.Lilly.Managed.AudioSourceMgr");
-                //if (type == null)
-                //{
-                //    LogError("type == null");
-                //    return;
-                //}
-                //TypeDefinition type2 = assembly.MainModule.GetType("AudioSourceMgr");
-                //if (type2 == null)
-                //{
-                //    LogError("type2 == null");
-                //    return;
-                //}
-                //MethodDefinition methodDefinition = type2.Methods.FirstOrDefault((MethodDefinition meth) => meth.Name == "LoadPlay");
-                //if (methodDefinition == null)
-                //{
-                //    LogError("methodDefinition == null");
-                //    return;
-                //}            
-                //PatcherHelper.SetHook(PatcherHelper.HookType.PostCall, assembly, "AudioSourceMgr", "LoadPlay", assemblyDefinition,
-                //    "COM3D2.Lilly.Managed.AudioSourceMgr", "LoadPlay");
-            }
+
+        }
 
         // 패치가 발생하기 전에 호출 
         public static void Initialize()
