@@ -47,7 +47,7 @@ namespace COM3D2.Lilly.Managed
     }
     public static class AudioSourceMgrLilly
     {
-        static String name = "Lilly.Managed.AudioSourceMgr";
+        static String name = "AudioSourceMgr";
 
         public static void LoadPlay(AudioSourceMgr that, string f_strFileName, float f_fFadeTime, bool f_bStreaming, bool f_bLoop = false)
         {
