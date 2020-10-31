@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using UnityEngine;
@@ -48,17 +49,40 @@ namespace COM3D2.Lilly.Managed
         }
     }
 
+
     public static class AudioSourceMgrLilly // 클래스명은 편한대로. 단지 AudioSourceMgr로 똑같이 적어버리면 아래 메소드에서 처리하기가 좀 곤란
     {
         static String name = "AudioSourceMgr";
 
+        // PreCall
         // 사운드 파일명 출력용
-        public static void LoadPlay(AudioSourceMgr that, string f_strFileName, float f_fFadeTime, bool f_bStreaming, bool f_bLoop = false) // 후킹시 원본 클래스도 같이 받도록 돼있음
+        public static void LoadPlayPreCall(AudioSourceMgr that, string f_strFileName, float f_fFadeTime, bool f_bStreaming, bool f_bLoop = false) // 후킹시 원본 클래스도 같이 받도록 돼있음
         //     public void LoadPlay(                     string f_strFileName, float f_fFadeTime, bool f_bStreaming, bool f_bLoop = false) // 원본
         {
-            Lilly.Log(name + ".LoadPlay:" + f_strFileName);
+            Lilly.Log(name + ".LoadPlay.LoadPlayPreCall:" + f_strFileName);
+        }
+        
+        // PreCall
+        // 사운드 파일명 출력용
+        public static void LoadPlayPostCall(AudioSourceMgr that, string f_strFileName, float f_fFadeTime, bool f_bStreaming, bool f_bLoop = false) // 후킹시 원본 클래스도 같이 받도록 돼있음
+        //     public void LoadPlay(                     string f_strFileName, float f_fFadeTime, bool f_bStreaming, bool f_bLoop = false) // 원본
+        {
+            Lilly.Log(name + ".LoadPlay.LoadPlayPostCall:" + f_strFileName);
         }
 
+
+    }
+    public static class ImportCMLilly // 클래스명은 편한대로. 단지 원래와 똑같이 적어버리면 아래 메소드에서 처리하기가 좀 곤란
+    {
+        static String name = "ImportCMLilly";
+
+        //PreJump
+        public static void ReadMaterial(ImportCM importCM, BinaryReader r, TBodySkin bodyskin = null, Material existmat = null)
+        //public static Material ReadMaterial(            BinaryReader r, TBodySkin bodyskin = null, Material existmat = null)
+        {
+             Lilly.Log(name + "." +
+                 "ReadMaterial:" + existmat.shader.name);
+        }
 
     }
 

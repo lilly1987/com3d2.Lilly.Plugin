@@ -32,53 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>F:\COM3D2\COM3D2x64_Data\Managed\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>F:\COM3D2\COM3D2x64_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
-    </Reference>
-    <Reference Include="COM3D2.UnityInjector.Patcher">
-      <HintPath>F:\COM3D2_my\Sybaris\COM3D2.UnityInjector.Patcher.dll</HintPath>
-    </Reference>
-    <Reference Include="ExIni">
-      <HintPath>F:\COM3D2_my\Sybaris\ExIni.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil">
-      <HintPath>F:\COM3D2_my\Sybaris\Mono.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Cecil.Inject">
-      <HintPath>F:\COM3D2_my\Sybaris\Mono.Cecil.Inject.dll</HintPath>
-    </Reference>
-    <Reference Include="PluginExt">
-      <HintPath>F:\COM3D2\Sybaris\UnityInjector\PluginExt.dll</HintPath>
-    </Reference>
-    <Reference Include="Sybaris.Loader">
-      <HintPath>F:\COM3D2_my\Sybaris\Sybaris.Loader.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Drawing.Design" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="UnityEngine">
-      <HintPath>F:\COM3D2\COM3D2x64_Data\Managed\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>F:\COM3D2\COM3D2x64_Data\Managed\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityInjector">
-      <HintPath>F:\COM3D2_my\Sybaris\UnityInjector.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityScript.Lang">
-      <HintPath>F:\COM3D2\COM3D2x64_Data\Managed\UnityScript.Lang.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="COM3D2.LILLY.Plugin.cs" />
     <Compile Include="GearMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,6 +42,31 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\SampleIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="F:\CM3D2\Sybaris\UnityInjector.dll" />
+    <Analyzer Include="F:\COM3D2\BepInEx\plugins\UnityInjectorLoader\BepInEx.UnityInjectorLoader.dll" />
+    <Analyzer Include="F:\COM3D2\COM3D2x64_Data\Managed\System.Core.dll" />
+    <Analyzer Include="F:\COM3D2\COM3D2x64_Data\Managed\System.Drawing.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>F:\COM3D2\COM3D2x64_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PluginExt">
+      <HintPath>F:\COM3D2\Sybaris\UnityInjector\PluginExt.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="UnityEngine">
+      <HintPath>F:\COM3D2\COM3D2x64_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>F:\COM3D2\COM3D2x64_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityInjector">
+      <HintPath>F:\CM3D2\Sybaris\UnityInjector.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

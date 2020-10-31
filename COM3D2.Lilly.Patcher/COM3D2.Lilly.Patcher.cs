@@ -37,7 +37,20 @@ namespace COM3D2.Lilly.Patcher
                     PatcherHelper.SetHook(
                         PatcherHelper.HookType.PreCall,
                         ta, "AudioSourceMgr.LoadPlay",
-                        da, "COM3D2.Lilly.Managed.AudioSourceMgrLilly.LoadPlay");
+                        da, "COM3D2.Lilly.Managed.AudioSourceMgrLilly.LoadPlayPreCall");
+
+                    PatcherHelper.SetHook(
+                        PatcherHelper.HookType.PostCall,
+                        ta, "AudioSourceMgr.LoadPlay",
+                        da, "COM3D2.Lilly.Managed.AudioSourceMgrLilly.LoadPlayPostCall");
+
+                    
+                    PatcherHelper.SetHook(
+                        PatcherHelper.HookType.PreCall,
+                        ta, "ImportC.ReadMaterial",
+                        da, "COM3D2.Lilly.Managed.ImportCMLilly.ReadMaterial");
+
+
                 }
                 else if (assembly.Name.Name == "UnityEngine")
                 {

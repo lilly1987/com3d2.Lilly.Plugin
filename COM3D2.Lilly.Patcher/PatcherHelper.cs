@@ -219,6 +219,7 @@ internal static class PatcherHelper
         {
             //instInsertPoint = targetMethod.Body.Instructions.Last();
             //一番最後のretだけを検索してパッチする
+            //맨 마지막 ret 만 검색하고 패치하는
             Instruction ret = targetMethod.Body.Instructions.Last(i => i.OpCode == OpCodes.Ret);
             int index = targetMethod.Body.Instructions.IndexOf(ret);
 
@@ -231,6 +232,7 @@ internal static class PatcherHelper
             if (hookType == HookType.PostCallLastReplace)
             {
                 // 新しいretを追加
+                // 새로운 ret 추가
                 var ret2 = il.Create(OpCodes.Ret);
                 il.InsertAfter(ret, ret2);
 
@@ -295,11 +297,12 @@ internal static class PatcherHelper
                     };
 
                     // todo 2があるとは限らないので、良い方法を探す（ExPostCallRetなら一応汎用使用可）
+                    // todo 2가 있다고는 할 수 없기 때문에, 좋은 방법을 찾아(ExPostCallRet이라면 일단 범용 사용 가능)
                     int tmpLoc2 = 2;
                     if (hookType == HookType.PostCallRet)
                     {
                         // 戻り値をテンポラリにコピー
-                        o2(l.Create(OpCodes.Dup));           // 最後の ret 用にコピーを作る
+                        o2(l.Create(OpCodes.Dup));           // 最後の ret 用にコピーを作る 마지막 ret에 복사본을 만들
                         o2(l.Create(OpCodes.Stloc, tmpLoc2));
                     }
                     if (hookType == HookType.ExPostCallRet)
@@ -378,6 +381,7 @@ internal static class PatcherHelper
         o(l.Create(OpCodes.Call, targetModule.ImportReference(calleeMethod)));
 
         // PreJumpの場合は元の処理を行わないように、そのままRetする
+        // PreJump의 경우 원래의 처리를하지 않도록 그대로 Ret하기
         if (hookType == HookType.PreJump)
         {
             o(l.Create(OpCodes.Ret));
@@ -399,6 +403,9 @@ internal static class PatcherHelper
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public enum HookType
     {
         PreJump // 원래 메소드의 선두에서 대체 시설 메소드로 이동 원래 메소드의 처리는 일체하지 않고 종료
