@@ -33,6 +33,12 @@ namespace COM3D2.Lilly.Patcher
                 {
                     Log("Assembly-CSharp");
 
+                    // PresetSet(Maid f_maid, Preset f_prest)
+                    PatcherHelper.SetHook(
+                        PatcherHelper.HookType.PreCall,
+                        ta, "CharacterMgr.PresetSet",
+                        da, "COM3D2.Lilly.Managed.CharacterMgrLilly.PresetSetPreCall");
+
                     // 사운드 파일명 출력용 후킹. 
                     PatcherHelper.SetHook(
                         PatcherHelper.HookType.PreCall,

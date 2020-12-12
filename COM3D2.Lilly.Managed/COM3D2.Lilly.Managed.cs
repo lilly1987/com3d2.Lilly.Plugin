@@ -49,8 +49,16 @@ namespace COM3D2.Lilly.Managed
         }
     }
 
-
-    public static class AudioSourceMgrLilly // 클래스명은 편한대로. 단지 AudioSourceMgr로 똑같이 적어버리면 아래 메소드에서 처리하기가 좀 곤란
+    public static class CharacterMgrLilly // 클래스명은 편한대로. 단지 AudioSourceMgr로 똑같이 적어버리면 아래 메소드에서 처리하기가 좀 곤란
+    {
+        static String name = "CharacterMgrLilly";
+        public static void PresetSetPreCall(CharacterMgr that, Maid f_maid, CharacterMgr.Preset f_prest) // 후킹시 원본 클래스도 같이 받도록 돼있음
+        //     public void PresetSet(Maid f_maid, Preset f_prest)// 원본
+        {
+            Lilly.Log(name + ".PresetSetPreCall:" + f_prest.strFileName);
+        }
+    }
+        public static class AudioSourceMgrLilly // 클래스명은 편한대로. 단지 AudioSourceMgr로 똑같이 적어버리면 아래 메소드에서 처리하기가 좀 곤란
     {
         static String name = "AudioSourceMgr";
 
