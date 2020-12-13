@@ -33,6 +33,12 @@ namespace COM3D2.Lilly.Patcher
                 {
                     Log("Assembly-CSharp");
 
+                    // private void SetProp(MaidProp mp, string filename, int f_nFileNameRID, bool f_bTemp, bool f_bNoScale = false)
+                    PatcherHelper.SetHook(
+                        PatcherHelper.HookType.PreCall,
+                        ta, "Maid.SetProp",
+                        da, "COM3D2.Lilly.Managed.MaidLilly.SetPropPreCall");
+
                     // PresetSet(Maid f_maid, Preset f_prest)
                     PatcherHelper.SetHook(
                         PatcherHelper.HookType.PreCall,
@@ -49,7 +55,6 @@ namespace COM3D2.Lilly.Patcher
                         PatcherHelper.HookType.PostCall,
                         ta, "AudioSourceMgr.LoadPlay",
                         da, "COM3D2.Lilly.Managed.AudioSourceMgrLilly.LoadPlayPostCall");
-
                     
                     PatcherHelper.SetHook(
                         PatcherHelper.HookType.PreCall,

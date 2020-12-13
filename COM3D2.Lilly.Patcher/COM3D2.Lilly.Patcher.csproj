@@ -42,6 +42,9 @@
       <HintPath>F:\COM3D2\BepInEx\core\Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="UnityInjector">
+      <HintPath>F:\cm3d2_j_154\Sybaris\UnityInjector.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

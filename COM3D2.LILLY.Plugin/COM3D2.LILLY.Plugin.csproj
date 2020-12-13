@@ -44,7 +44,6 @@
     <Content Include="Resources\SampleIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="F:\CM3D2\Sybaris\UnityInjector.dll" />
     <Analyzer Include="F:\COM3D2\BepInEx\plugins\UnityInjectorLoader\BepInEx.UnityInjectorLoader.dll" />
     <Analyzer Include="F:\COM3D2\COM3D2x64_Data\Managed\System.Core.dll" />
     <Analyzer Include="F:\COM3D2\COM3D2x64_Data\Managed\System.Drawing.dll" />
@@ -65,8 +64,11 @@
       <HintPath>F:\COM3D2\COM3D2x64_Data\Managed\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityInjector">
-      <HintPath>F:\CM3D2\Sybaris\UnityInjector.dll</HintPath>
+      <HintPath>F:\cm3d2_j_154\Sybaris\UnityInjector.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
