@@ -20,6 +20,10 @@ namespace COM3D2.Lilly.Patcher
         public static IEnumerable<string> TargetDLLs { get; } = new[] { "Assembly-CSharp.dll", "UnityEngine.dll", "Assembly-CSharp-firstpass.dll" };
 
         // Patches the assemblies
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="assembly"></param>
         public static void Patch(AssemblyDefinition assembly)
         {
             LogError(assembly.Name.Name);
@@ -33,17 +37,31 @@ namespace COM3D2.Lilly.Patcher
                 {
                     Log("Assembly-CSharp");
 
+                    // static은 안되나?
+                    //public static void Assert(string message, bool nothrow = false)
+                    //PatcherHelper.SetHook(
+                    //    PatcherHelper.HookType.PreJump,
+                    //    ta, "NDebug.Assert",
+                    //    da, "COM3D2.Lilly.Managed.NDebugLilly.AssertPreJump");
+
+                    // 오류 발생
                     // private void SetProp(MaidProp mp, string filename, int f_nFileNameRID, bool f_bTemp, bool f_bNoScale = false)
-                    PatcherHelper.SetHook(
-                        PatcherHelper.HookType.PreCall,
-                        ta, "Maid.SetProp",
-                        da, "COM3D2.Lilly.Managed.MaidLilly.SetPropPreCall");
+                    //PatcherHelper.SetHook(
+                    //    PatcherHelper.HookType.PreCall,
+                    //    ta, "Maid.SetProp",
+                    //    da, "COM3D2.Lilly.Managed.MaidLilly.SetPropPreCall");
 
                     // PresetSet(Maid f_maid, Preset f_prest)
                     PatcherHelper.SetHook(
                         PatcherHelper.HookType.PreCall,
                         ta, "CharacterMgr.PresetSet",
                         da, "COM3D2.Lilly.Managed.CharacterMgrLilly.PresetSetPreCall");
+
+                    // public Preset PresetSave(Maid f_maid, PresetType f_type)
+                    PatcherHelper.SetHook(
+                        PatcherHelper.HookType.PostCallRet,
+                        ta, "CharacterMgr.PresetSave",
+                        da, "COM3D2.Lilly.Managed.CharacterMgrLilly.PresetSavePostCallRet");
 
                     // 사운드 파일명 출력용 후킹. 
                     PatcherHelper.SetHook(

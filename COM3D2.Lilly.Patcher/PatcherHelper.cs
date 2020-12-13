@@ -274,6 +274,7 @@ internal static class PatcherHelper
         {
             //instInsertPoint = targetMethod.Body.Instructions.Last();
             //全てのretを検索してパッチする
+            //모든 ret를 검색하고 패치하는
             targetMethod.Body.Instructions
                 .Where(i => i.OpCode == OpCodes.Ret)
                 .ToList()
@@ -328,6 +329,7 @@ internal static class PatcherHelper
                     if (hookType == HookType.PostCallRet)
                     {
                         // 戻り値をテンポラリからスタックへコピー
+                        // 반환 값을 임시로 스택에 복사
                         o2(l.Create(OpCodes.Ldloc, tmpLoc2));
                     }
                     o2(l.Create(OpCodes.Call, targetModule.ImportReference(calleeMethod)));
@@ -372,7 +374,7 @@ internal static class PatcherHelper
                 o(l.Create(OpCodes.Ldarg, i));
             }
         }
-        /*ここにはこない
+        /*ここにはこない 여기에는 오지 않는다
         if (hookType == HookType.PostCallRet)
         {
             // 戻り値をテンポラリからスタックへコピー
@@ -402,6 +404,7 @@ internal static class PatcherHelper
             Console.WriteLine("*** HookType.ExPreCall:" + instInsertPoint + "/" + String.Format("{0:X}", instInsertPoint.GetHashCode()));
         }
     }
+
 
     /// <summary>
     /// 

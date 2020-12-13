@@ -49,10 +49,24 @@ namespace COM3D2.Lilly.Managed
         }
     }
 
+    //public static class NDebugLilly // 클래스명은 편한대로. 단지 AudioSourceMgr로 똑같이 적어버리면 아래 메소드에서 처리하기가 좀 곤란
+    //{
+    //    static String name = "NDebugLilly";
+    //
+    //    public static void AssertPreJump(NDebug that, MaidProp mp, string filename, int f_nFileNameRID, bool f_bTemp, bool f_bNoScale) // 후킹시 원본 클래스도 같이 받도록 돼있음
+    //    //public static void Assert(string message, bool nothrow = false)
+    //    {
+    //        Lilly.Log(name + ".AssertPreJump:" + filename);
+    //    }
+    //}
+
     public static class MaidLilly // 클래스명은 편한대로. 단지 AudioSourceMgr로 똑같이 적어버리면 아래 메소드에서 처리하기가 좀 곤란
     {
         static String name = "MaidLilly";
-        public static void SetPropPreCall(Maid that, MaidProp mp, string filename, int f_nFileNameRID, bool f_bTemp, bool f_bNoScale = false) // 후킹시 원본 클래스도 같이 받도록 돼있음
+        /**
+         * 오류 발생
+         */
+        public static void SetPropPreCall(Maid that, MaidProp mp, string filename, int f_nFileNameRID, bool f_bTemp, bool f_bNoScale ) // 후킹시 원본 클래스도 같이 받도록 돼있음
     // private void SetProp(MaidProp mp, string filename, int f_nFileNameRID, bool f_bTemp, bool f_bNoScale = false)    
         {
             Lilly.Log(name + ".SetPropPreCall:" + filename);
@@ -66,6 +80,12 @@ namespace COM3D2.Lilly.Managed
         //     public void PresetSet(Maid f_maid, Preset f_prest)// 원본
         {
             Lilly.Log(name + ".PresetSetPreCall:" + f_prest.strFileName);
+        }        
+
+        public static void PresetSavePostCallRet(CharacterMgr that, Maid f_maid, CharacterMgr.PresetType f_type, CharacterMgr.Preset preset) // 후킹시 원본 클래스도 같이 받도록 돼있음
+        //     public Preset PresetSave(Maid f_maid, PresetType f_type)
+        {
+            Lilly.Log(name + ".PresetSavePostCallRet:" + preset.strFileName);
         }
     }
         public static class AudioSourceMgrLilly // 클래스명은 편한대로. 단지 AudioSourceMgr로 똑같이 적어버리면 아래 메소드에서 처리하기가 좀 곤란
